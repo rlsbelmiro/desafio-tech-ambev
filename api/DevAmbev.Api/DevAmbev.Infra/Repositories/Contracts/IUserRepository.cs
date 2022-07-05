@@ -10,5 +10,6 @@ namespace DevAmbev.Infra.Repositories.Contracts
     public interface IUserRepository : IBaseRepository<User>
     {
         Task<User> Login(string email, string password);
+        Task<User> GetUserByEmail(string email);
     }
 }

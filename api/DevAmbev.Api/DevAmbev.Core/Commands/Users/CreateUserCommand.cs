@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using DevAmbev.Core.Commands.Contracts;
-using DevAmbev.Core.Contracts;
+using DevAmbev.Core.Contracts.Users;
 using DevAmbev.Domain.Entities;
 using DevAmbev.Infra.Repositories.Contracts;
 using System;
@@ -39,18 +39,27 @@ namespace DevAmbev.Core.Commands.Users
                 }
                 else
                 {
-                    var result = await _repository.Add(entity);
-
-                    if (result)
+                    var userExist = await _repository.GetUserByEmail(entity.Email);
+                    if (userExist.Id == 0)
                     {
-                        response = _mapper.Map<UserResponse>(entity);
-                        response.Success = true;
-                        response.Message = "Operação realizada com sucesso!";
+                        var result = await _repository.Add(entity);
+
+                        if (result)
+                        {
+                            response = _mapper.Map<UserResponse>(entity);
+                            response.Success = true;
+                            response.Message = "Operação realizada com sucesso!";
+                        }
+                        else
+                        {
+                            response.Success = false;
+                            response.Message = "Erro ao inserir usuário";
+                        }
                     }
                     else
                     {
                         response.Success = false;
-                        response.Message = "Erro ao inserir usuário";
+                        response.Message = "Usuário já cadastrado com este e-mail";
                     }
                 }
 

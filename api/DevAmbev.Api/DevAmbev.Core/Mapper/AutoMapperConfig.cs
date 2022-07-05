@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using DevAmbev.Core.Contracts;
+using DevAmbev.Core.Contracts.Users;
 using DevAmbev.Domain.Entities;
 
 namespace DevAmbev.Core.Mappers
@@ -15,6 +15,7 @@ namespace DevAmbev.Core.Mappers
         {
             CreateMap<UserRequest, User>().ReverseMap();
             CreateMap<UserResponse, User>().ReverseMap();
+            CreateMap<LoginUserResponse, User>().ReverseMap();
         }
     }
 }

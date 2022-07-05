@@ -25,7 +25,7 @@ namespace DevAmbev.Domain.Entities
             if (string.IsNullOrEmpty(this.Password))
                 this.ListOfError.Add("Informe a senha");
 
-            return this.ListOfError.Count > 0;
+            return this.ListOfError.Count == 0;
         }
     }
 }

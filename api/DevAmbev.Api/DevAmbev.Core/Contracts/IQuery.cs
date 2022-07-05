@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace DevAmbev.Core.Contracts
 {
-    public class UserRequest
+    public interface IQuery<T, E>
     {
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string Pasword { get; set; }
+        Task<E> Handle(T request);
     }
 }
