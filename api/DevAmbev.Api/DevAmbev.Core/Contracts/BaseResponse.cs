@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DevAmbev.Core.Commands.Contracts
 {
-    public abstract class BaseResponse
+    public class BaseResponse
     {
         public bool Success { get; set; }
         public string Message { get; set; }
