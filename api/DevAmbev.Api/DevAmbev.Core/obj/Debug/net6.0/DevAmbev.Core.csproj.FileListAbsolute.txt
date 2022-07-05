@@ -1,0 +1,17 @@
+C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Core\obj\Debug\net6.0\DevAmbev.Core.csproj.AssemblyReference.cache
+C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Core\obj\Debug\net6.0\DevAmbev.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Core\obj\Debug\net6.0\DevAmbev.Core.AssemblyInfoInputs.cache
+C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Core\obj\Debug\net6.0\DevAmbev.Core.AssemblyInfo.cs
+C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Core\obj\Debug\net6.0\DevAmbev.Core.csproj.CoreCompileInputs.cache
+C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Core\bin\Debug\net6.0\DevAmbev.Core.deps.json
+C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Core\bin\Debug\net6.0\DevAmbev.Core.dll
+C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Core\bin\Debug\net6.0\DevAmbev.Core.pdb
+C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Core\bin\Debug\net6.0\DevAmbev.Domain.dll
+C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Core\bin\Debug\net6.0\DevAmbev.Infra.dll
+C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Core\bin\Debug\net6.0\DevAmbev.Domain.pdb
+C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Core\bin\Debug\net6.0\DevAmbev.Infra.pdb
+C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Core\obj\Debug\net6.0\DevAmbev.Core.csproj.CopyComplete
+C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Core\obj\Debug\net6.0\DevAmbev.Core.dll
+C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Core\obj\Debug\net6.0\refint\DevAmbev.Core.dll
+C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Core\obj\Debug\net6.0\DevAmbev.Core.pdb
+C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Core\obj\Debug\net6.0\ref\DevAmbev.Core.dll
