@@ -20,13 +20,21 @@ namespace DevAmbev.Api.Controllers
             try
             {
                 var result = await command.Handle(request);
-                result.Token = TokenService.GenerateToken(new UserResponse()
+                if(result.Success)
                 {
-                    Name = result.Name,
-                    Email = result.Email,
-                    Id = result.Id
-                });
-                return Ok(result);
+                    result.Token = TokenService.GenerateToken(new UserResponse()
+                    {
+                        Name = result.Name,
+                        Email = result.Email,
+                        Id = result.Id
+                    });
+                    return Ok(result);
+                }
+                else
+                {
+                    return StatusCode(401, "Login ou Senha inválidos");
+                }
+                
             }
             catch(Exception ex)
             {

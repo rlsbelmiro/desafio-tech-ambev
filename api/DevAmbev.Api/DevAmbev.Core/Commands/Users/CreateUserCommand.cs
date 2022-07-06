@@ -29,7 +29,7 @@ namespace DevAmbev.Core.Commands.Users
             {
                 var entity = _mapper.Map<User>(request);
                 entity.CreatedAt = DateTime.Now;
-                entity.CreatedBy = emailUsuario;
+                entity.CreatedBy = emailUsuario ?? "cadastro-externo";
                 entity.Active = true;
                 var validate = entity.Validate();
                 if (!validate)

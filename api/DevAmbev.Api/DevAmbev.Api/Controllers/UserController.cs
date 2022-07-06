@@ -11,7 +11,7 @@ namespace DevAmbev.Api.Controllers
     public class UserController : ControllerBase
     {
         [HttpPost]
-        [Authorize]
+        [AllowAnonymous]
         public async Task<ActionResult<UserResponse>> CreateUser([FromServices] ICommand<UserRequest, UserResponse> command, [FromBody] UserRequest userRequest)
         {
             try

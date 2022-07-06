@@ -18,6 +18,7 @@ using DevAmbev.Infra.Data;
 using DevAmbev.Infra.Repositories;
 using DevAmbev.Infra.Repositories.Contracts;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -51,7 +52,7 @@ builder.Services.AddTransient<ICommand<int, BaseResponse>, DeleteUserCommand>();
 #region Products
 builder.Services.AddTransient<ICommand<ProductRequest, ProductResponse>, CreateProductCommand>();
 builder.Services.AddTransient<ICommand<ProductUpdateRequest, ProductResponse>, UpdateProductCommand>();
-builder.Services.AddTransient<ICommand<int, BaseResponse>, DeleteProductCommand>();
+builder.Services.AddTransient<ICommand<int, ProductResponse>, DeleteProductCommand>();
 
 builder.Services.AddTransient<IQuery<ProductListRequest, ProductListResponse>, ListProductQuery>();
 builder.Services.AddTransient<IQuery<int, ProductResponse>, FindByIdProductQuery>();
@@ -94,11 +95,7 @@ builder.Services.AddAuthentication(x =>
         ValidateAudience = false
     };
 });
-
-
-
-
-
+builder.Services.AddCors();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -114,5 +111,10 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.UseCors(opt =>
+{
+    opt.AllowAnyOrigin();
+    opt.AllowAnyMethod();
+    opt.AllowAnyHeader();
+}); ;
 app.Run();

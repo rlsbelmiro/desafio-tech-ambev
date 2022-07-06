@@ -44,7 +44,7 @@ namespace DevAmbev.Api.Controllers
         [HttpDelete]
         [Route("{id}")]
         [Authorize]
-        public async Task<ActionResult<BaseResponse>> DeleteProduct([FromServices] ICommand<int, BaseResponse> command, [FromRoute] int id)
+        public async Task<ActionResult<BaseResponse>> DeleteProduct([FromServices] ICommand<int, ProductResponse> command, [FromRoute] int id)
         {
             try
             {

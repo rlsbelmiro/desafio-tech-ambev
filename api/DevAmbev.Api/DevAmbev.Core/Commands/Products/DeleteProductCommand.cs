@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DevAmbev.Core.Commands.Contracts;
+using DevAmbev.Core.Contracts.Products;
 using DevAmbev.Core.Contracts.Users;
 using DevAmbev.Infra.Repositories.Contracts;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DevAmbev.Core.Commands.Products
 {
-    public class DeleteProductCommand : ICommand<int, BaseResponse>
+    public class DeleteProductCommand : ICommand<int, ProductResponse>
     {
         private readonly IProductRepository _repository;
         private readonly IMapper _mapper;
@@ -21,9 +22,9 @@ namespace DevAmbev.Core.Commands.Products
             _mapper = mapper;
         }
 
-        public async Task<BaseResponse> Handle(int request, string emailUsuario)
+        public async Task<ProductResponse> Handle(int request, string emailUsuario)
         {
-            var response = new BaseResponse();
+            var response = new ProductResponse();
             try
             {
                 if (request == 0)
