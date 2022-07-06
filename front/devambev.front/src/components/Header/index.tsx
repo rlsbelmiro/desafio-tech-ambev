@@ -18,8 +18,8 @@ export default function Header({ active }: HeaderProps) {
                     <h1 className={styles.logo}>DevAmbev - Tech</h1>
                 </Link>
                 <nav className={styles.menuNav}>
-                    <Link href="categories">
-                        <a className={active ? styles.active : ''}>Categorias</a>
+                    <Link href="customers">
+                        <a>Clientes</a>
                     </Link>
 
                     <Link href="products">
