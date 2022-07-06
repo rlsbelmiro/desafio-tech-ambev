@@ -8,14 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevAmbev.Core.Commands.Products
+namespace DevAmbev.Core.Commands.Customers
 {
-    public class DeleteProductCommand : ICommand<int, BaseResponse>
+    public class DeleteCustomerCommand : ICommand<int, BaseResponse>
     {
-        private readonly IProductRepository _repository;
+        private readonly ICustomerRepository _repository;
         private readonly IMapper _mapper;
 
-        public DeleteProductCommand(IProductRepository repository, IMapper mapper)
+        public DeleteCustomerCommand(ICustomerRepository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
@@ -27,22 +27,22 @@ namespace DevAmbev.Core.Commands.Products
             try
             {
                 if (request == 0)
-                    throw new Exception("Informe o Id do produto");
+                    throw new Exception("Informe o Id do cliente");
 
                 var entity = await _repository.GetById(request);
                 if (entity.Id == 0)
-                    throw new Exception("Produto não encontrado");
+                    throw new Exception("Cliente não encontrado");
 
                 var result = await _repository.Delete(request);
 
                 
                 response.Success = true;
-                response.Message = "Produto excluído com sucesso!";
+                response.Message = "Cliente excluído com sucesso!";
             }
             catch(Exception ex)
             {
                 response.Success = false;
-                response.Message = "Erro ao excluir produto: " + ex.Message;
+                response.Message = "Erro ao excluir cliente: " + ex.Message;
             }
             return response;
         }

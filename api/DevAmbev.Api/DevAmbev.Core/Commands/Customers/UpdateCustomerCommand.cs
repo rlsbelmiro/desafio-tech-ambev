@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DevAmbev.Core.Commands.Contracts;
+using DevAmbev.Core.Contracts.Customers;
 using DevAmbev.Core.Contracts.Products;
 using DevAmbev.Core.Contracts.Users;
 using DevAmbev.Infra.Repositories.Contracts;
@@ -9,36 +10,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevAmbev.Core.Commands.Products
+namespace DevAmbev.Core.Commands.Customers
 {
-    public class UpdateProductCommand : ICommand<ProductUpdateRequest, ProductResponse>
+    public class UpdateCustomerCommand : ICommand<CustomerUpdateRequest, CustomerResponse>
     {
-        private readonly IProductRepository _repository;
+        private readonly ICustomerRepository _repository;
         private readonly IMapper _mapper;
 
-        public UpdateProductCommand(IProductRepository repository, IMapper mapper)
+        public UpdateCustomerCommand(ICustomerRepository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
         }
 
-        public async Task<ProductResponse> Handle(ProductUpdateRequest request)
+        public async Task<CustomerResponse> Handle(CustomerUpdateRequest request)
         {
-            var response = new ProductResponse();
+            var response = new CustomerResponse();
             try
             {
                 if (request.Id == 0)
-                    throw new Exception("Informe o Id do producto a ser alterado");
+                    throw new Exception("Informe o Id do cliente a ser alterado");
 
                 var entity = await _repository.GetById(request.Id);
                 if (entity.Id == 0)
-                    throw new Exception("Usuário não encontrado");
+                    throw new Exception("Cliente não encontrado");
 
                 entity.Name = request.Name;
+                entity.Email = request.Email;
                 entity.Active = request.Active;
-                entity.Description = request.Description;
-                entity.Price = request.Price;
-                entity.Quantity = request.Quantity;
+                entity.Document = request.Document;
                 entity.UpdatedAt = DateTime.Now;
                 entity.UpdatedBy = "renato.belmiro@rbcoding.com.br";
 
@@ -46,16 +46,22 @@ namespace DevAmbev.Core.Commands.Products
                 if (!validate)
                     throw new Exception(String.Join(", ", entity.ListOfError));
 
+                var customerExist = await _repository.GetByDocument(request.Document);
+                if (customerExist.Id > 0 && customerExist.Id != request.Id)
+                {
+                    throw new Exception("Cliente já cadastrado com o mesmo documento");
+                }
+
                 var result = await _repository.Update(entity);
 
-                response = _mapper.Map<ProductResponse>(entity);
+                response = _mapper.Map<CustomerResponse>(entity);
                 response.Success = true;
-                response.Message = "Produto alterado com sucesso!";
+                response.Message = "Cliente alterado com sucesso!";
             }
             catch(Exception ex)
             {
                 response.Success = false;
-                response.Message = "Erro ao editar produto: " + ex.Message;
+                response.Message = "Erro ao editar cliente: " + ex.Message;
             }
             return response;
         }

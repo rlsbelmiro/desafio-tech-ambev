@@ -1,10 +1,13 @@
 using AutoMapper;
 using DevAmbev.Core.Commands.Contracts;
+using DevAmbev.Core.Commands.Customers;
 using DevAmbev.Core.Commands.Products;
 using DevAmbev.Core.Commands.Users;
 using DevAmbev.Core.Contracts;
+using DevAmbev.Core.Contracts.Customers;
 using DevAmbev.Core.Contracts.Products;
 using DevAmbev.Core.Contracts.Users;
+using DevAmbev.Core.Queries.Customers;
 using DevAmbev.Core.Queries.Products;
 using DevAmbev.Core.Queries.Users;
 using DevAmbev.Infra.Data;
@@ -23,6 +26,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 //repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 
 //commands
 
@@ -43,6 +47,15 @@ builder.Services.AddTransient<ICommand<int, BaseResponse>, DeleteProductCommand>
 
 builder.Services.AddTransient<IQuery<ProductListRequest, ProductListResponse>, ListProductQuery>();
 builder.Services.AddTransient<IQuery<int, ProductResponse>, FindByIdProductQuery>();
+#endregion
+
+#region Customers
+builder.Services.AddTransient<ICommand<CustomerRequest, CustomerResponse>, CreateCustomerCommand>();
+builder.Services.AddTransient<ICommand<CustomerUpdateRequest, CustomerResponse>, UpdateCustomerCommand>();
+builder.Services.AddTransient<ICommand<int, BaseResponse>, DeleteCustomerCommand>();
+
+builder.Services.AddTransient<IQuery<CustomerListRequest, CustomerListResponse>, ListCustomerQuery>();
+builder.Services.AddTransient<IQuery<int, CustomerResponse>, FindByIdCustomerQuery>();
 #endregion
 
 
