@@ -21,7 +21,7 @@ namespace DevAmbev.Core.Commands.Users
             _mapper = mapper;
         }
 
-        public async Task<UserResponse> Handle(UserUpdateRequest request)
+        public async Task<UserResponse> Handle(UserUpdateRequest request, string emailUsuario)
         {
             var response = new UserResponse();
             try
@@ -44,7 +44,7 @@ namespace DevAmbev.Core.Commands.Users
                 entity.Name = request.Name;
                 entity.Active = request.Active;
                 entity.UpdatedAt = DateTime.Now;
-                entity.UpdatedBy = "renato.belmiro@rbcoding.com.br";
+                entity.UpdatedBy = emailUsuario;
 
                 var validate = entity.Validate();
                 if (!validate)

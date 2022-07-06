@@ -29,11 +29,13 @@ namespace DevAmbev.Domain.Entities
         public override bool Validate()
         {
             if (this.Amount <= 0)
-                this.ListOfError.Add("O valor do pedido");
+                this.ListOfError.Add("Informe o valor do pedido");
             if (this.CustomerId <= 0)
                 this.ListOfError.Add("Informe o cliente do pedido");
             if (this.UserId <= 0)
                 this.ListOfError.Add("Informe o usuário do pedido");
+            if (this.OrderItems == null || this.OrderItems.Count == 0)
+                this.ListOfError.Add("Informe os itens do pedido");
 
             return this.ListOfError.Count == 0;
         }

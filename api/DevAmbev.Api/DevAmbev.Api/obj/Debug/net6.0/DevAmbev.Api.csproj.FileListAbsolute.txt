@@ -57,3 +57,10 @@ C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Api\obj\Debug\net
 C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Api\obj\Debug\net6.0\ref\DevAmbev.Api.dll
 C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Api\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Api\obj\Debug\net6.0\DevAmbev.Api.MvcApplicationPartsAssemblyInfo.cs
+C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Api\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Api\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Api\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Api\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Api\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Api\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Api\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll

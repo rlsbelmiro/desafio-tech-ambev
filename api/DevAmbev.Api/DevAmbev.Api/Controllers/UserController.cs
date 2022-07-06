@@ -1,6 +1,7 @@
 ﻿using DevAmbev.Core.Commands.Contracts;
 using DevAmbev.Core.Contracts;
 using DevAmbev.Core.Contracts.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DevAmbev.Api.Controllers
@@ -10,11 +11,12 @@ namespace DevAmbev.Api.Controllers
     public class UserController : ControllerBase
     {
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<UserResponse>> CreateUser([FromServices] ICommand<UserRequest, UserResponse> command, [FromBody] UserRequest userRequest)
         {
             try
             {
-                return Ok(await command.Handle(userRequest));
+                return Ok(await command.Handle(userRequest, User.Identity.Name));
             }
             catch(Exception ex)
             {
@@ -24,12 +26,13 @@ namespace DevAmbev.Api.Controllers
 
         [HttpPut]
         [Route("{id}")]
+        [Authorize]
         public async Task<ActionResult<UserResponse>> EditUser([FromServices] ICommand<UserUpdateRequest, UserResponse> command, [FromBody] UserUpdateRequest request, [FromRoute] int id)
         {
             try
             {
                 request.Id = id;
-                return Ok(await command.Handle(request));
+                return Ok(await command.Handle(request, User.Identity.Name));
             }
             catch(Exception ex)
             {
@@ -39,11 +42,12 @@ namespace DevAmbev.Api.Controllers
 
         [HttpDelete]
         [Route("{id}")]
+        [Authorize]
         public async Task<ActionResult<BaseResponse>> DeleteUser([FromServices] ICommand<int, BaseResponse> command, [FromRoute] int id)
         {
             try
             {
-                return Ok(await command.Handle(id));
+                return Ok(await command.Handle(id, User.Identity.Name));
             }
             catch (Exception ex)
             {
@@ -52,6 +56,7 @@ namespace DevAmbev.Api.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<UserListResponse>> List([FromServices] IQuery<UserListRequest, UserListResponse> query)
         {
             try
@@ -67,6 +72,7 @@ namespace DevAmbev.Api.Controllers
 
         [HttpGet]
         [Route("{id}")]
+        [Authorize]
         public async Task<ActionResult<UserListResponse>> GetById([FromServices] IQuery<int, UserResponse> query, [FromRoute] int id)
         {
             try

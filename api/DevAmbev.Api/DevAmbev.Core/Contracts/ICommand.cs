@@ -8,6 +8,6 @@ namespace DevAmbev.Core.Commands.Contracts
 {
     public interface ICommand<T, E>
     {
-        public Task<E> Handle(T request);
+        public Task<E> Handle(T request, string emailUsuario);
     }
 }

@@ -1,18 +1,25 @@
 using AutoMapper;
+using DevAmbev.Api;
 using DevAmbev.Core.Commands.Contracts;
 using DevAmbev.Core.Commands.Customers;
+using DevAmbev.Core.Commands.Orders;
 using DevAmbev.Core.Commands.Products;
 using DevAmbev.Core.Commands.Users;
 using DevAmbev.Core.Contracts;
 using DevAmbev.Core.Contracts.Customers;
+using DevAmbev.Core.Contracts.Orders;
 using DevAmbev.Core.Contracts.Products;
 using DevAmbev.Core.Contracts.Users;
 using DevAmbev.Core.Queries.Customers;
+using DevAmbev.Core.Queries.Orders;
 using DevAmbev.Core.Queries.Products;
 using DevAmbev.Core.Queries.Users;
 using DevAmbev.Infra.Data;
 using DevAmbev.Infra.Repositories;
 using DevAmbev.Infra.Repositories.Contracts;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +34,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 
 //commands
 
@@ -58,10 +66,38 @@ builder.Services.AddTransient<IQuery<CustomerListRequest, CustomerListResponse>,
 builder.Services.AddTransient<IQuery<int, CustomerResponse>, FindByIdCustomerQuery>();
 #endregion
 
+#region Orders
+builder.Services.AddTransient<ICommand<OrderRequest, OrderResponse>, CreateOrderCommand>();
+builder.Services.AddTransient<IQuery<OrderListRequest, OrderListResponse>, ListOrderQuery>();
+builder.Services.AddTransient<IQuery<int, OrderResponse>, FindByIdOrderQuery>();
+#endregion
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+var key = Encoding.ASCII.GetBytes(Settings.Secret);
+builder.Services.AddAuthentication(x =>
+{
+    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(x =>
+{
+    x.RequireHttpsMetadata = false;
+    x.SaveToken = true;
+    x.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(key),
+        ValidateIssuer = false,
+        ValidateAudience = false
+    };
+});
+
+
+
+
 
 var app = builder.Build();
 
@@ -74,6 +110,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

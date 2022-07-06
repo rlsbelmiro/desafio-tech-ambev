@@ -17,14 +17,14 @@ namespace DevAmbev.Core.Commands.Products
             _mapper = mapper;
         }
 
-        public async Task<ProductResponse> Handle(ProductRequest request)
+        public async Task<ProductResponse> Handle(ProductRequest request, string emailUsuario)
         {
             var response = new ProductResponse();
             try
             {
                 var entity = _mapper.Map<Product>(request);
                 entity.CreatedAt = DateTime.Now;
-                entity.CreatedBy = "renato.belmiro@rbcoding.com.br";
+                entity.CreatedBy = emailUsuario;
                 var validate = entity.Validate();
                 if (!validate)
                 {

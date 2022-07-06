@@ -17,11 +17,11 @@ namespace DevAmbev.Domain.Entities
         public int OrderId { get; set; }
         public int ProductId { get; set; }
         public int Quantity { get; set; }
-        public decimal UnitPrice { get; set; }
+        public decimal UnityPrice { get; set; }
         public decimal TotalPrice { 
             get
             {
-                return this.UnitPrice * this.Quantity;
+                return this.UnityPrice * this.Quantity;
             }
         }
 
@@ -36,7 +36,7 @@ namespace DevAmbev.Domain.Entities
                 this.ListOfError.Add("Informe o id do produto");
             if (this.Quantity <= 0)
                 this.ListOfError.Add("Informe a quantidade comprada");
-            if (this.UnitPrice <= 0)
+            if (this.UnityPrice <= 0)
                 this.ListOfError.Add("Informe o preço unitário do produto");
 
             return this.ListOfError.Count == 0;

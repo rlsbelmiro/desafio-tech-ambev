@@ -22,7 +22,7 @@ namespace DevAmbev.Core.Commands.Products
             _mapper = mapper;
         }
 
-        public async Task<ProductResponse> Handle(ProductUpdateRequest request)
+        public async Task<ProductResponse> Handle(ProductUpdateRequest request, string emailUsuario)
         {
             var response = new ProductResponse();
             try
@@ -40,7 +40,7 @@ namespace DevAmbev.Core.Commands.Products
                 entity.Price = request.Price;
                 entity.Quantity = request.Quantity;
                 entity.UpdatedAt = DateTime.Now;
-                entity.UpdatedBy = "renato.belmiro@rbcoding.com.br";
+                entity.UpdatedBy = emailUsuario;
 
                 var validate = entity.Validate();
                 if (!validate)

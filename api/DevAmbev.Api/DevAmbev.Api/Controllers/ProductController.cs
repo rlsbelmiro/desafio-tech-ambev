@@ -2,6 +2,7 @@
 using DevAmbev.Core.Contracts;
 using DevAmbev.Core.Contracts.Products;
 using DevAmbev.Core.Contracts.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DevAmbev.Api.Controllers
@@ -11,11 +12,12 @@ namespace DevAmbev.Api.Controllers
     public class ProductController : ControllerBase
     {
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<ProductResponse>> CreateProduct([FromServices] ICommand<ProductRequest, ProductResponse> command, [FromBody] ProductRequest request)
         {
             try
             {
-                return Ok(await command.Handle(request));
+                return Ok(await command.Handle(request, User.Identity.Name));
             }
             catch(Exception ex)
             {
@@ -25,12 +27,13 @@ namespace DevAmbev.Api.Controllers
 
         [HttpPut]
         [Route("{id}")]
+        [Authorize]
         public async Task<ActionResult<ProductResponse>> EditProduct([FromServices] ICommand<ProductUpdateRequest, ProductResponse> command, [FromBody] ProductUpdateRequest request, [FromRoute] int id)
         {
             try
             {
                 request.Id = id;
-                return Ok(await command.Handle(request));
+                return Ok(await command.Handle(request, User.Identity.Name));
             }
             catch(Exception ex)
             {
@@ -40,11 +43,12 @@ namespace DevAmbev.Api.Controllers
 
         [HttpDelete]
         [Route("{id}")]
+        [Authorize]
         public async Task<ActionResult<BaseResponse>> DeleteProduct([FromServices] ICommand<int, BaseResponse> command, [FromRoute] int id)
         {
             try
             {
-                return Ok(await command.Handle(id));
+                return Ok(await command.Handle(id, User.Identity.Name));
             }
             catch (Exception ex)
             {
@@ -53,6 +57,7 @@ namespace DevAmbev.Api.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<ProductListResponse>> List([FromServices] IQuery<ProductListRequest, ProductListResponse> query)
         {
             try
@@ -68,6 +73,7 @@ namespace DevAmbev.Api.Controllers
 
         [HttpGet]
         [Route("{id}")]
+        [Authorize]
         public async Task<ActionResult<ProductResponse>> GetById([FromServices] IQuery<int, ProductResponse> query, [FromRoute] int id)
         {
             try

@@ -22,14 +22,14 @@ namespace DevAmbev.Core.Commands.Users
             _mapper = mapper;
         }
 
-        public async Task<UserResponse> Handle(UserRequest request)
+        public async Task<UserResponse> Handle(UserRequest request, string emailUsuario)
         {
             var response = new UserResponse();
             try
             {
                 var entity = _mapper.Map<User>(request);
                 entity.CreatedAt = DateTime.Now;
-                entity.CreatedBy = "renato.belmiro@rbcoding.com.br";
+                entity.CreatedBy = emailUsuario;
                 entity.Active = true;
                 var validate = entity.Validate();
                 if (!validate)

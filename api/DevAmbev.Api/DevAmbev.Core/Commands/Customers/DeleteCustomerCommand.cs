@@ -21,7 +21,7 @@ namespace DevAmbev.Core.Commands.Customers
             _mapper = mapper;
         }
 
-        public async Task<BaseResponse> Handle(int request)
+        public async Task<BaseResponse> Handle(int request, string emailUsuario)
         {
             var response = new BaseResponse();
             try

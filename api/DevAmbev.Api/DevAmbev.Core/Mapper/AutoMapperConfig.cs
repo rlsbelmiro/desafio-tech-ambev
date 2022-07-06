@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using DevAmbev.Core.Contracts.Customers;
+using DevAmbev.Core.Contracts.Orders;
 using DevAmbev.Core.Contracts.Products;
 using DevAmbev.Core.Contracts.Users;
 using DevAmbev.Domain.Entities;
@@ -24,6 +25,11 @@ namespace DevAmbev.Core.Mappers
 
             CreateMap<CustomerRequest, Customer>().ReverseMap();
             CreateMap<CustomerResponse, Customer>().ReverseMap();
+
+            CreateMap<OrderRequest, Order>().ReverseMap();
+            CreateMap<OrderItemRequest, OrderItem>().ReverseMap();
+            CreateMap<OrderResponse, Order>().ReverseMap();
+            CreateMap<OrderItemResponse, OrderItem>().ReverseMap();
         }
     }
 }
