@@ -66,3 +66,4 @@ C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Api\bin\Debug\net
 C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Api\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Api\bin\Debug\net6.0\Microsoft.DotNet.PlatformAbstractions.dll
 C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Api\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Api\bin\Debug\net6.0\RabbitMQ.Client.dll

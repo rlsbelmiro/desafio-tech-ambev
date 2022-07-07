@@ -109,6 +109,10 @@
             "MySql.Data": {
               "target": "Package",
               "version": "[8.0.29, )"
+            },
+            "RabbitMQ.Client": {
+              "target": "Package",
+              "version": "[6.4.0, )"
             }
           },
           "imports": [

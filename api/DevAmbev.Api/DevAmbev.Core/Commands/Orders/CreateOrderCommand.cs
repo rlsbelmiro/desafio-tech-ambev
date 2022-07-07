@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
 using DevAmbev.Core.Commands.Contracts;
 using DevAmbev.Core.Contracts.Orders;
+using DevAmbev.Domain.Contracts;
 using DevAmbev.Domain.Entities;
+using DevAmbev.Infra.MQ;
 using DevAmbev.Infra.Repositories.Contracts;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,8 +49,10 @@ namespace DevAmbev.Core.Commands.Orders
                 {
                     response.Id = entity.Id;
                     response.Amount = entity.Amount;
+                    response.CustomerId = entity.CustomerId;
                     response.Success = true;
                     response.Message = "Pedido criado com sucesso";
+                    await this.SendMessageToQueue(entity.Id);
                 }
             }
             catch (Exception ex)
@@ -68,6 +73,39 @@ namespace DevAmbev.Core.Commands.Orders
                 total += item.TotalPrice;
             }
             order.Amount = total;
+        }
+
+        private async Task SendMessageToQueue(int orderId)
+        {
+            try
+            {
+                string queueName = "order-alert";
+                var order = await _repository.GetById(orderId);
+                var server = new RabbitIntegration();
+                if(order != null && order.Id > 0)
+                {
+                    var message = new OrderAlert()
+                    {
+                        OrderId = orderId,
+                        OrderAmount = order.Amount,
+                        CustomerName = order.Customer.Name,
+                        CustomerEmail = order.Customer.Email,
+                        OrderItems = order.OrderItems.Select(x => new OrderAlertItems()
+                        {
+                            Price = x.UnityPrice,
+                            ProductName = x.Product.Name,
+                            Quantity = x.Quantity
+                        })
+                    };
+
+                    var messageBody = JsonConvert.SerializeObject(message);
+                    server.SendMessage(messageBody, queueName);
+                }
+            }
+            catch(Exception e)
+            {
+
+            }
         }
     }
 }
