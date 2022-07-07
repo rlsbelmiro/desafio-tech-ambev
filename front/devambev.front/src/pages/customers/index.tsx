@@ -120,7 +120,7 @@ export default function Customer() {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                     />
-                    <Input type="text" placeholder="Digite o email do produto"
+                    <Input type="text" placeholder="Digite o email do cliente"
                         className={styles.input}
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}

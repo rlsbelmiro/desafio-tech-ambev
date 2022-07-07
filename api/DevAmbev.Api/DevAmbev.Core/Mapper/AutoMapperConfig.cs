@@ -28,8 +28,19 @@ namespace DevAmbev.Core.Mappers
 
             CreateMap<OrderRequest, Order>().ReverseMap();
             CreateMap<OrderItemRequest, OrderItem>().ReverseMap();
-            CreateMap<OrderResponse, Order>().ReverseMap();
-            CreateMap<OrderItemResponse, OrderItem>().ReverseMap();
+            CreateMap<OrderResponse, Order>();
+            CreateMap<Order, OrderResponse>()
+                .ForMember(dst => dst.CustomerName,
+                            map => map.MapFrom(src => src.Customer != null ? src.Customer.Name : "")
+                );
+            CreateMap<OrderItemResponse, OrderItem>();
+            CreateMap<OrderItem, OrderItemResponse>()
+                .ForMember(dst => dst.ProductName,
+                            map => map.MapFrom(src => src.Product != null ? src.Product.Name : "")
+                )
+                .ForMember(dst => dst.Price,
+                            map => map.MapFrom(src => src.UnityPrice)
+                );
         }
     }
 }

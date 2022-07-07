@@ -34,7 +34,6 @@ namespace DevAmbev.Core.Commands.Orders
                 entity.CreatedBy = emailUsuario;
                 entity.CreatedAt = DateTime.Now;
                 entity.Active = true;
-                entity.UserId = 5;
 
                 await this.SumTotalPrice(entity);
 

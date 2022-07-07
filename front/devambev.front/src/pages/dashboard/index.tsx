@@ -1,16 +1,17 @@
 import { canSSRAuth } from "../../utils/canSSRAuth";
 import Head from 'next/head';
 import Header from "../../components/Header";
+import styles from './styles.module.scss';
 
 export default function Dashboard() {
     return (
         <>
             <Head>
-                <title>Painel - Sujeito Pizzaria</title>
+                <title>Painel - DevAmbev</title>
             </Head>
-            <div>
+            <div className={styles.container}>
                 <Header />
-                <h1>Bem vindo ao painel</h1>
+                <h2>Bem vindo, escolha uma opção do menu acima para iniciar</h2>
             </div>
         </>
         

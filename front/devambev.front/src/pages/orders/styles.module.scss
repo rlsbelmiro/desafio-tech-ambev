@@ -1,0 +1,161 @@
+.container {
+    max-width: 600px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.container h1, .container h3 {
+    color: var(--white);
+}
+
+.products {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    & select {
+        width: 200px;
+        margin-right: 10px;
+    }
+
+    & input {
+        width: 130px;
+        margin-right: 10px;
+    }
+
+
+    & table {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+.botaoAdd {
+    height: 40px;
+    width: 80px;
+    border-radius: 5px;
+    background-color: var(--green-900) !important;
+    color: var(--dark-700) !important;
+    cursor: pointer;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -11px;
+}
+
+
+.form{
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+
+    select {
+        background-color: var(--dark-900);
+        border: 1px solid var(--gray-100);
+        padding: 0.5rem;
+        height: 40px;
+        border-radius :0.5rem;
+        color: var(--white);
+        margin-bottom: 1rem;
+    }
+
+    select:first-child {
+        color: var(--gray-100)
+    }
+
+    textarea {
+        background-color: var(--dark-900);
+        border: 1px solid var(--gray-100);
+        padding: 1rem;
+        height: 100px;
+        border-radius :0.5rem;
+        color: var(--white);
+        margin-bottom: 1rem;
+        resize: none;
+    }
+}
+
+.input{
+    background-color: var(--dark-900);
+    border: 1px solid var(--gray-100);
+    padding: 1rem;
+    height: 40px;
+    border-radius :0.5rem;
+    color: var(--white);
+    margin-bottom: 1rem;
+    
+}
+
+.buttonAdd{
+    height: 40px;
+    border: 0;
+    background-color: var(--white);
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-radius: 0.5rem;
+    color: var(--dark-700);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+
+.inputFile {
+    background-color: var(--dark-900);
+    height: 280px;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--gray-100);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    input {
+        display: none;
+    }
+
+    span {
+        z-index: 99;
+        position: absolute;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.containerCheckbox{
+    display: flex;
+    color: var(--white);
+    font-size: 14px;
+}
+
+.table{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-color: var(--white);
+
+    & tr td {
+        padding: 3px;
+    }
+
+    & tr td a {
+        margin-left: 12px;
+        cursor: pointer;
+    }
+
+    & tr:hover{
+        background-color: #ccc;
+    }
+
+    & thead tr{
+        background-color: var(--green-900);
+        font-weight: bold;
+    }
+}

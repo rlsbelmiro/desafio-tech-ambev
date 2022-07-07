@@ -31,7 +31,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Pizzaria</title>
+        <title>DevAmbev - Login</title>
       </Head>
       <div className={styles.containerCenter}>
         <h1 className={styles.logo}>DevAmbev - Tech</h1>

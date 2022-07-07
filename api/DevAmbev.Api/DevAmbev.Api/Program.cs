@@ -46,7 +46,7 @@ builder.Services.AddTransient<ICommand<UserUpdateRequest, UserResponse>, UpdateU
 builder.Services.AddTransient<IQuery<UserListRequest, UserListResponse>, ListUserQuery>();
 builder.Services.AddTransient<IQuery<int, UserResponse>, FindByIdUserQuery>();
 builder.Services.AddTransient<IQuery<LoginUserRequest, LoginUserResponse>, LoginUserQuery>();
-builder.Services.AddTransient<ICommand<int, BaseResponse>, DeleteUserCommand>();
+builder.Services.AddTransient<ICommand<int, UserResponse>, DeleteUserCommand>();
 #endregion
 
 #region Products

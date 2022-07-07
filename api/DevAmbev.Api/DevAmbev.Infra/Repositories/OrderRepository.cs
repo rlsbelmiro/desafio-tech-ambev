@@ -25,14 +25,14 @@ namespace DevAmbev.Infra.Repositories
             bool result = false;
             StringBuilder sql = new StringBuilder();
             sql.Append("INSERT INTO Orders");
-            sql.Append("(Amount, CustomerId, UserId, CreatedAt, UpdatedAt, CreatedBy, UpdatedBy, Active)");
-            sql.Append("VALUES(@Amount, @CustomerId, @UserId, @CreatedAt, @UpdatedAt, @CreatedBy, @UpdatedBy, @Active);");
+            sql.Append("(Amount, CustomerId, CreatedAt, UpdatedAt, CreatedBy, UpdatedBy, Active)");
+            sql.Append("VALUES(@Amount, @CustomerId, @CreatedAt, @UpdatedAt, @CreatedBy, @UpdatedBy, @Active);");
             sql.Append("SELECT LAST_INSERT_ID();");
 
             StringBuilder sql2 = new StringBuilder();
             sql2.Append("INSERT INTO OrderItems");
-            sql2.Append("(UnitPrice, Quantity, TotalPrice, OrderId, ProductId, CreatedAt, UpdatedAt, CreatedBy, UpdatedBy)");
-            sql2.Append("VALUES(@UnitPrice, @Quantity, @TotalPrice, @OrderId, @ProductId, @CreatedAt, @UpdatedAt, @CreatedBy, @UpdatedBy);");
+            sql2.Append("(UnityPrice, Quantity, TotalPrice, OrderId, ProductId, CreatedAt, UpdatedAt, CreatedBy, UpdatedBy)");
+            sql2.Append("VALUES(@UnityPrice, @Quantity, @TotalPrice, @OrderId, @ProductId, @CreatedAt, @UpdatedAt, @CreatedBy, @UpdatedBy);");
             sql2.Append("SELECT LAST_INSERT_ID();");
 
             using (var dapper = _context.CreateConnection())
@@ -111,8 +111,10 @@ namespace DevAmbev.Infra.Repositories
         {
             Order? orders = new Order();
             StringBuilder sql = new StringBuilder();
-            sql.Append("SELECT o.Id, o.Amount, i.Id, i.ProductId, i.UnityPrice, i.Quantity, i.TotalPrice FROM Orders o ");
+            sql.Append("SELECT o.Id, o.Amount, o.CustomerId, i.Id, i.ProductId, i.UnityPrice, i.Quantity, i.TotalPrice, p.Name, c.Name FROM Orders o ");
             sql.Append("INNER JOIN OrderItems i on i.OrderId = o.Id ");
+            sql.Append("INNER JOIN Products p on p.Id = i.ProductId ");
+            sql.Append("INNER JOIN Customers c on c.Id = o.CustomerId ");
             sql.Append("WHERE o.Id = @id");
 
             using (var dapper = _context.CreateConnection())
@@ -121,8 +123,8 @@ namespace DevAmbev.Infra.Repositories
                 {
                     dapper.Open();
                     var orderDic = new Dictionary<int, Order>();
-                    var result = await dapper.QueryAsync<Order, OrderItem, Order>(sql.ToString(),
-                    map: (o, i) =>
+                    var result = await dapper.QueryAsync<Order, OrderItem, Product, Customer, Order>(sql.ToString(),
+                    map: (o, i, p, c) =>
                     {
                         Order orderEntry;
 
@@ -133,6 +135,8 @@ namespace DevAmbev.Infra.Repositories
                             orderDic.Add(o.Id, o);
                         }
 
+                        i.Product = p;
+                        orderEntry.Customer = c;
                         orderEntry.OrderItems.Add(i);
                         return orderEntry;
                     },
@@ -140,7 +144,7 @@ namespace DevAmbev.Infra.Repositories
                     {
                         id
                     },
-                    splitOn: "Id");
+                    splitOn: "Id, Name, Name");
                     orders = result != null ? result.FirstOrDefault() : new Order();
                     if (orders == null)
                         orders = new Order();
@@ -161,14 +165,22 @@ namespace DevAmbev.Infra.Repositories
         {
             List<Order> orders = new List<Order>();
             StringBuilder sql = new StringBuilder();
-            sql.Append("SELECT * FROM Orders");
+            sql.Append("SELECT o.*, c.Name FROM Orders o ");
+            sql.Append(" INNER JOIN Customers c ON o.CustomerId = c.Id");
 
             using (var dapper = _context.CreateConnection())
             {
                 try
                 {
                     dapper.Open();
-                    var result = await dapper.QueryAsync<Order>(sql.ToString());
+                    var result = await dapper.QueryAsync<Order, Customer, Order>(sql.ToString(),
+                    map: (o, c) =>
+                    {
+                        o.Customer = c;
+                        return o;
+                    },
+                    splitOn: "Name"
+                    );
                     orders = result.ToList();
                 }
                 catch (Exception e)
@@ -192,8 +204,7 @@ namespace DevAmbev.Infra.Repositories
             sql.Append("UPDATE Orders ");
             sql.Append("SET Amount = @Amount, ");
             sql.Append("Email = @Email, ");
-            sql.Append("Customers = @Curstomers, ");
-            sql.Append("UsersId = @UsersId, ");
+            sql.Append("CustomerId = @CurstomerId, ");
             sql.Append("CreatedAt = @CreatedAt, ");
             sql.Append("UpdatedAt = @UpdatedAt, ");
             sql.Append("CreatedBy = @CreatedBy, ");

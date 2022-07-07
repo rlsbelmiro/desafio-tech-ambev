@@ -51,18 +51,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
     useEffect(() => {
         const { '@nextauth.token' : token } = parseCookies(undefined);
         if(token) {
-            api.get('/me').then(res => {
-                if(res.data) {
-                    const { id, name, email } = res.data;
-                    setUser({
-                        id,
-                        name,
-                        email
-                    });
-                } else {
-                    signOut();
-                }
-            });
         } else {
             signOut();
         }
@@ -98,10 +86,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
     async function signUp({name, email, password}: SignUpProps) {
         try {
+            const active = true;
             const response = await api.post('/User', {
                 name,
                 email,
-                password
+                password,
+                active
             });
 
             const { success, message } = response.data;

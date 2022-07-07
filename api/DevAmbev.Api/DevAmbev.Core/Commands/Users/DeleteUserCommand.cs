@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DevAmbev.Core.Commands.Users
 {
-    public class DeleteUserCommand : ICommand<int, BaseResponse>
+    public class DeleteUserCommand : ICommand<int, UserResponse>
     {
         private readonly IUserRepository _repository;
         private readonly IMapper _mapper;
@@ -21,7 +21,7 @@ namespace DevAmbev.Core.Commands.Users
             _mapper = mapper;
         }
 
-        public async Task<BaseResponse> Handle(int request, string emailUsuario)
+        public async Task<UserResponse> Handle(int request, string emailUsuario)
         {
             var response = new UserResponse();
             try

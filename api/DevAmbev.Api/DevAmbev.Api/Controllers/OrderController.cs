@@ -15,7 +15,7 @@ namespace DevAmbev.Api.Controllers
     {
         [HttpPost]
         [Authorize]
-        public async Task<ActionResult<BaseResponse>> CreateCustomer([FromServices] ICommand<OrderRequest, OrderResponse> command, [FromBody] OrderRequest request)
+        public async Task<ActionResult<BaseResponse>> CreateOrder([FromServices] ICommand<OrderRequest, OrderResponse> command, [FromBody] OrderRequest request)
         {
             try
             {
