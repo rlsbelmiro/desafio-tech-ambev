@@ -1,5 +1,6 @@
 import { setupAPIClient } from "./app";
 
+
 export const api = setupAPIClient();
 
 export interface ProductModel {
