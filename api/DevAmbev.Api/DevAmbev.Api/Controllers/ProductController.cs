@@ -4,6 +4,7 @@ using DevAmbev.Core.Contracts.Products;
 using DevAmbev.Core.Contracts.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace DevAmbev.Api.Controllers
 {
@@ -11,6 +12,12 @@ namespace DevAmbev.Api.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
+        private readonly ILogger _logger;
+        public ProductController(ILogger logger)
+        {
+            _logger = logger;
+        }
+
         [HttpPost]
         [Authorize]
         public async Task<ActionResult<ProductResponse>> CreateProduct([FromServices] ICommand<ProductRequest, ProductResponse> command, [FromBody] ProductRequest request)
@@ -21,6 +28,8 @@ namespace DevAmbev.Api.Controllers
             }
             catch(Exception ex)
             {
+                var messageRequest = JsonConvert.SerializeObject(request);
+                _logger.LogError($"Erro ao executar CreateProduct: {ex.Message}", messageRequest);
                 return StatusCode(500,ex.Message);
             }
         }
@@ -37,6 +46,8 @@ namespace DevAmbev.Api.Controllers
             }
             catch(Exception ex)
             {
+                var messageRequest = JsonConvert.SerializeObject(request);
+                _logger.LogError($"Erro ao executar EditProduct: {ex.Message}", messageRequest);
                 return StatusCode(500, ex.Message);
             }
         }
@@ -52,6 +63,7 @@ namespace DevAmbev.Api.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError($"Erro ao executar DeleteProduct: {ex.Message}");
                 return StatusCode(500, ex.Message);
             }
         }
@@ -66,6 +78,7 @@ namespace DevAmbev.Api.Controllers
             }
             catch(Exception ex)
             {
+                _logger.LogError($"Erro ao executar ListProduct: {ex.Message}");
                 return StatusCode(500, ex.Message);
             }
         }
@@ -82,6 +95,7 @@ namespace DevAmbev.Api.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError($"Erro ao executar GetByIdProduct: {ex.Message}");
                 return StatusCode(500, ex.Message);
             }
         }

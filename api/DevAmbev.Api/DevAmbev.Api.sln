@@ -3,15 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32516.85
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevAmbev.Api", "DevAmbev.Api\DevAmbev.Api.csproj", "{36ECFE6E-C123-4142-84A2-DFC2FA235BAF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevAmbev.Api", "DevAmbev.Api\DevAmbev.Api.csproj", "{36ECFE6E-C123-4142-84A2-DFC2FA235BAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevAmbev.Infra", "DevAmbev.Infra\DevAmbev.Infra.csproj", "{4AD11160-D09D-4B64-BA21-55E274CCB4E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevAmbev.Infra", "DevAmbev.Infra\DevAmbev.Infra.csproj", "{4AD11160-D09D-4B64-BA21-55E274CCB4E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevAmbev.Core", "DevAmbev.Core\DevAmbev.Core.csproj", "{96E6E407-EA75-40D9-8B31-53603DB6C2EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevAmbev.Core", "DevAmbev.Core\DevAmbev.Core.csproj", "{96E6E407-EA75-40D9-8B31-53603DB6C2EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevAmbev.Test", "DevAmbev.Test\DevAmbev.Test.csproj", "{68FFCAB4-D145-4957-A5BA-56D7691BFDCA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevAmbev.Test", "DevAmbev.Test\DevAmbev.Test.csproj", "{68FFCAB4-D145-4957-A5BA-56D7691BFDCA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevAmbev.Domain", "DevAmbev.Domain\DevAmbev.Domain.csproj", "{CE7FE880-366C-43C0-B1AA-168F7AB243B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevAmbev.Domain", "DevAmbev.Domain\DevAmbev.Domain.csproj", "{CE7FE880-366C-43C0-B1AA-168F7AB243B7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens de Solução", "{6C4C828E-EF9A-4130-B810-B79B2F1828B1}"
+	ProjectSection(SolutionItems) = preProject
+		Dockerfile = Dockerfile
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

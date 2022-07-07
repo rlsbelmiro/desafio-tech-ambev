@@ -147,24 +147,24 @@ export default function Order() {
             <main className={styles.container}>
                 <h1>Cadastrar pedidos</h1>
                 <form onSubmit={(e) => handleSave(e)} className={styles.form}>
-                    <select value={customerId} onChange={(e) => setCustomerId(e.target.value)}>
+                    <select value={customerId} onChange={(e) => setCustomerId(parseInt(e.target.value))}>
                         <option>Selecione o cliente</option>
                         {
                             customers.map(c => {
                                 return (
-                                    <option key={c.id} value={c.id} checked={c.id == customerId}>{c.name}</option>
+                                    <option key={c.id} value={c.id}>{c.name}</option>
                                 )
                             })
                         }
                     </select>
                     <h3>Produtos</h3>
                     <div className={styles.products}>
-                        <select value={productId} onChange={(e) => setProductId(e.target.value)}>
+                        <select value={productId} onChange={(e) => setProductId(parseInt(e.target.value))}>
                             <option>Selecione o produto</option>
                             {
                                 products.map(p => {
                                     return (
-                                        <option key={p.id} value={p.id} checked={p.id == productId}>{`${p.name} - R$ ${p.price.toFixed(2)}`}</option>
+                                        <option key={p.id} value={p.id}>{`${p.name} - R$ ${p.price.toFixed(2)}`}</option>
                                     )
                                 })
                             }
@@ -191,7 +191,7 @@ export default function Order() {
                                 {
                                     items.map(i => {
                                         return (
-                                            <tr>
+                                            <tr key={i.productId}>
                                                 <td>{i.productName}</td>
                                                 <td>{i.quantity}</td>
                                                 <td>{i.price}</td>

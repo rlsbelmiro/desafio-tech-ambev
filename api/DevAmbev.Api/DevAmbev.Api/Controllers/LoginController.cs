@@ -6,6 +6,7 @@ using DevAmbev.Core.Contracts.Products;
 using DevAmbev.Core.Contracts.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace DevAmbev.Api.Controllers
 {
@@ -13,9 +14,14 @@ namespace DevAmbev.Api.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
+        private readonly ILogger _logger;
+        public LoginController(ILogger<LoginController> logger)
+        {
+            _logger = logger;
+        }
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult<BaseResponse>> CreateCustomer([FromServices] IQuery<LoginUserRequest, LoginUserResponse> command, [FromBody] LoginUserRequest request)
+        public async Task<ActionResult<BaseResponse>> Login([FromServices] IQuery<LoginUserRequest, LoginUserResponse> command, [FromBody] LoginUserRequest request)
         {
             try
             {
@@ -38,6 +44,8 @@ namespace DevAmbev.Api.Controllers
             }
             catch(Exception ex)
             {
+                var messageRequest = JsonConvert.SerializeObject(request);
+                _logger.LogError($"Erro ao executar Login: {ex.Message}", messageRequest);
                 return StatusCode(500,ex.Message);
             }
         }

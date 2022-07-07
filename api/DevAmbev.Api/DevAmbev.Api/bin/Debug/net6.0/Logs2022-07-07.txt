@@ -1,0 +1,18 @@
+2022-07-07 01:09:26,867 [1] INFO  App  
+ Now listening on: https://localhost:7004 
+ 
+2022-07-07 01:09:26,900 [1] INFO  App  
+ Now listening on: http://localhost:5004 
+ 
+2022-07-07 01:09:26,913 [1] INFO  App  
+ Application started. Press Ctrl+C to shut down. 
+ 
+2022-07-07 01:09:26,920 [1] INFO  App  
+ Hosting environment: Development 
+ 
+2022-07-07 01:09:26,957 [1] INFO  App  
+ Content root path: C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Api\ 
+ 
+2022-07-07 01:10:42,316 [15] ERROR App  
+ Erro ao executar Login: Value cannot be null. (Parameter 'value') 
+ 

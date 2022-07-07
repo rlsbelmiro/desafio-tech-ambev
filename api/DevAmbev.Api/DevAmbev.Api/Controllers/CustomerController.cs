@@ -5,6 +5,7 @@ using DevAmbev.Core.Contracts.Products;
 using DevAmbev.Core.Contracts.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace DevAmbev.Api.Controllers
 {
@@ -12,6 +13,11 @@ namespace DevAmbev.Api.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
+        private readonly ILogger _logger;
+        public CustomerController(ILogger<CustomerController> logger)
+        {
+            _logger = logger;
+        }
         [HttpPost]
         [Authorize]
         public async Task<ActionResult<CustomerResponse>> CreateCustomer([FromServices] ICommand<CustomerRequest, CustomerResponse> command, [FromBody] CustomerRequest request)
@@ -23,6 +29,8 @@ namespace DevAmbev.Api.Controllers
             }
             catch(Exception ex)
             {
+                var messageRequest = JsonConvert.SerializeObject(request);
+                _logger.LogError($"Erro ao executar CreateCustomer: {ex.Message}", messageRequest);
                 return StatusCode(500,ex.Message);
             }
         }
@@ -39,6 +47,8 @@ namespace DevAmbev.Api.Controllers
             }
             catch(Exception ex)
             {
+                var messageRequest = JsonConvert.SerializeObject(request);
+                _logger.LogError($"Erro ao executar EditCustomer: {ex.Message}", messageRequest);
                 return StatusCode(500, ex.Message);
             }
         }
@@ -46,7 +56,7 @@ namespace DevAmbev.Api.Controllers
         [HttpDelete]
         [Route("{id}")]
         [Authorize]
-        public async Task<ActionResult<BaseResponse>> DeleteProduct([FromServices] ICommand<int, BaseResponse> command, [FromRoute] int id)
+        public async Task<ActionResult<BaseResponse>> DeleteCustomer([FromServices] ICommand<int, BaseResponse> command, [FromRoute] int id)
         {
             try
             {
@@ -54,6 +64,7 @@ namespace DevAmbev.Api.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError($"Erro ao executar DeleteCustomer: {ex.Message}", id);
                 return StatusCode(500, ex.Message);
             }
         }
@@ -68,6 +79,7 @@ namespace DevAmbev.Api.Controllers
             }
             catch(Exception ex)
             {
+                _logger.LogError($"Erro ao executar ListCustomer: {ex.Message}");
                 return StatusCode(500, ex.Message);
             }
         }
@@ -84,6 +96,7 @@ namespace DevAmbev.Api.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError($"Erro ao executar GetByIdCustomer: {ex.Message}");
                 return StatusCode(500, ex.Message);
             }
         }

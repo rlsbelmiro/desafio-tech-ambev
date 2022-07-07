@@ -3,6 +3,7 @@ using DevAmbev.Core.Contracts;
 using DevAmbev.Core.Contracts.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace DevAmbev.Api.Controllers
 {
@@ -10,6 +11,12 @@ namespace DevAmbev.Api.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        private readonly ILogger _logger;
+        public UserController(ILogger logger)
+        {
+            _logger = logger;
+        }
+
         [HttpPost]
         [AllowAnonymous]
         public async Task<ActionResult<UserResponse>> CreateUser([FromServices] ICommand<UserRequest, UserResponse> command, [FromBody] UserRequest userRequest)
@@ -20,6 +27,8 @@ namespace DevAmbev.Api.Controllers
             }
             catch(Exception ex)
             {
+                var messageRequest = JsonConvert.SerializeObject(userRequest);
+                _logger.LogError($"Erro ao executar CreateUser: {ex.Message}", messageRequest);
                 return StatusCode(500,ex.Message);
             }
         }
@@ -36,6 +45,8 @@ namespace DevAmbev.Api.Controllers
             }
             catch(Exception ex)
             {
+                var messageRequest = JsonConvert.SerializeObject(request);
+                _logger.LogError($"Erro ao executar EditUser: {ex.Message}", messageRequest);
                 return StatusCode(500, ex.Message);
             }
         }
@@ -51,6 +62,7 @@ namespace DevAmbev.Api.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError($"Erro ao executar DeleteUser: {ex.Message}");
                 return StatusCode(500, ex.Message);
             }
         }
@@ -65,6 +77,7 @@ namespace DevAmbev.Api.Controllers
             }
             catch(Exception ex)
             {
+                _logger.LogError($"Erro ao executar ListUser: {ex.Message}");
                 return StatusCode(500, ex.Message);
             }
         }
@@ -81,6 +94,7 @@ namespace DevAmbev.Api.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError($"Erro ao executar GetByIdUser: {ex.Message}");
                 return StatusCode(500, ex.Message);
             }
         }

@@ -6,6 +6,7 @@ using DevAmbev.Core.Contracts.Products;
 using DevAmbev.Core.Contracts.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace DevAmbev.Api.Controllers
 {
@@ -13,6 +14,11 @@ namespace DevAmbev.Api.Controllers
     [ApiController]
     public class OrderController : ControllerBase
     {
+        private readonly ILogger _logger;
+        public OrderController(ILogger<OrderController> logger)
+        {
+            _logger = logger;
+        }
         [HttpPost]
         [Authorize]
         public async Task<ActionResult<BaseResponse>> CreateOrder([FromServices] ICommand<OrderRequest, OrderResponse> command, [FromBody] OrderRequest request)
@@ -23,6 +29,8 @@ namespace DevAmbev.Api.Controllers
             }
             catch(Exception ex)
             {
+                var messageRequest = JsonConvert.SerializeObject(request);
+                _logger.LogError($"Erro ao executar CreateOrder: {ex.Message}", messageRequest);
                 return StatusCode(500,ex.Message);
             }
         }
@@ -37,6 +45,7 @@ namespace DevAmbev.Api.Controllers
             }
             catch(Exception ex)
             {
+                _logger.LogError($"Erro ao executar ListOrder: {ex.Message}");
                 return StatusCode(500, ex.Message);
             }
         }
@@ -52,6 +61,7 @@ namespace DevAmbev.Api.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError($"Erro ao executar GetByIdOrder: {ex.Message}");
                 return StatusCode(500, ex.Message);
             }
         }
