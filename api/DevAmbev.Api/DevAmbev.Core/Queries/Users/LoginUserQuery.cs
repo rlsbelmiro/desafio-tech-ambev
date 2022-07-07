@@ -2,6 +2,7 @@
 using DevAmbev.Core.Contracts;
 using DevAmbev.Core.Contracts.Users;
 using DevAmbev.Infra.Repositories.Contracts;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,13 @@ namespace DevAmbev.Core.Queries.Users
     {
         private readonly IUserRepository _repository;
         private readonly IMapper _mapper;
+        private readonly IConfiguration _configuration;
 
-        public LoginUserQuery(IUserRepository repository, IMapper mapper)
+        public LoginUserQuery(IUserRepository repository, IMapper mapper, IConfiguration config)
         {
             _repository = repository;
             _mapper = mapper;
+            _configuration = config;
         }
 
         public async Task<LoginUserResponse> Handle(LoginUserRequest request)
@@ -43,6 +46,7 @@ namespace DevAmbev.Core.Queries.Users
             }
             catch(Exception ex)
             {
+                throw new Exception(_configuration.GetConnectionString("SqlConnection"));
                 response.Success = false;
                 response.Message = "Erro ao consultar usuário: " + ex.Message;
             }

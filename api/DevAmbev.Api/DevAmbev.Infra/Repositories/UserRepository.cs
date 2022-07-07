@@ -196,6 +196,7 @@ namespace DevAmbev.Infra.Repositories
             }
             catch (Exception ex)
             {
+                throw ex;
                 return new User();
             }
         }

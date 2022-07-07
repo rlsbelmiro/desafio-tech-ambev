@@ -67,7 +67,7 @@ namespace DevAmbev.Core.Commands.Users
             }
             catch(Exception ex)
             {
-                throw new Exception("Erro ao criar usuário: ");
+                throw new Exception("Erro ao criar usuário: " + ex.Message);
             }
         }
     }

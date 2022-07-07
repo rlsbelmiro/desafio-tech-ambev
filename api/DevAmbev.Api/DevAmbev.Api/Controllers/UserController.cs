@@ -12,7 +12,7 @@ namespace DevAmbev.Api.Controllers
     public class UserController : ControllerBase
     {
         private readonly ILogger _logger;
-        public UserController(ILogger logger)
+        public UserController(ILogger<UserController> logger)
         {
             _logger = logger;
         }

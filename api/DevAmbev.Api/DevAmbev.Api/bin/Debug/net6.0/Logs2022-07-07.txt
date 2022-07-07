@@ -16,3 +16,98 @@
 2022-07-07 01:10:42,316 [15] ERROR App  
  Erro ao executar Login: Value cannot be null. (Parameter 'value') 
  
+2022-07-07 01:32:45,503 [1] INFO  App  
+ Now listening on: https://localhost:7004 
+ 
+2022-07-07 01:32:45,523 [1] INFO  App  
+ Now listening on: http://localhost:5004 
+ 
+2022-07-07 01:32:45,538 [1] INFO  App  
+ Application started. Press Ctrl+C to shut down. 
+ 
+2022-07-07 01:32:45,551 [1] INFO  App  
+ Hosting environment: Development 
+ 
+2022-07-07 01:32:45,558 [1] INFO  App  
+ Content root path: C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Api\ 
+ 
+2022-07-07 01:40:45,048 [1] INFO  App  
+ Now listening on: https://localhost:7004 
+ 
+2022-07-07 01:40:45,087 [1] INFO  App  
+ Now listening on: http://localhost:5004 
+ 
+2022-07-07 01:40:45,116 [1] INFO  App  
+ Application started. Press Ctrl+C to shut down. 
+ 
+2022-07-07 01:40:45,193 [1] INFO  App  
+ Hosting environment: Development 
+ 
+2022-07-07 01:40:45,236 [1] INFO  App  
+ Content root path: C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Api\ 
+ 
+2022-07-07 01:41:16,020 [9] ERROR App  
+ An unhandled exception has occurred while executing the request. 
+ 
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.Extensions.Logging.ILogger' while attempting to activate 'DevAmbev.Api.Controllers.UserController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method10(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass7_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2022-07-07 01:42:23,389 [1] INFO  App  
+ Now listening on: https://localhost:7004 
+ 
+2022-07-07 01:42:23,430 [1] INFO  App  
+ Now listening on: http://localhost:5004 
+ 
+2022-07-07 01:42:23,449 [1] INFO  App  
+ Application started. Press Ctrl+C to shut down. 
+ 
+2022-07-07 01:42:23,461 [1] INFO  App  
+ Hosting environment: Development 
+ 
+2022-07-07 01:42:23,467 [1] INFO  App  
+ Content root path: C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Api\ 
+ 
+2022-07-07 01:59:49,010 [1] INFO  App  
+ Now listening on: https://localhost:7004 
+ 
+2022-07-07 01:59:49,032 [1] INFO  App  
+ Now listening on: http://localhost:5004 
+ 
+2022-07-07 01:59:49,054 [1] INFO  App  
+ Application started. Press Ctrl+C to shut down. 
+ 
+2022-07-07 01:59:49,065 [1] INFO  App  
+ Hosting environment: Development 
+ 
+2022-07-07 01:59:49,073 [1] INFO  App  
+ Content root path: C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Api\ 
+ 
+2022-07-07 02:42:01,629 [1] INFO  App  
+ Now listening on: https://localhost:7004 
+ 
+2022-07-07 02:42:01,646 [1] INFO  App  
+ Now listening on: http://localhost:5004 
+ 
+2022-07-07 02:42:01,664 [1] INFO  App  
+ Application started. Press Ctrl+C to shut down. 
+ 
+2022-07-07 02:42:01,669 [1] INFO  App  
+ Hosting environment: Development 
+ 
+2022-07-07 02:42:01,677 [1] INFO  App  
+ Content root path: C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Api\ 
+ 
