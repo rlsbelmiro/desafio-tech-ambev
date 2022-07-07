@@ -13,7 +13,7 @@ namespace DevAmbev.Api.Controllers
     public class ProductController : ControllerBase
     {
         private readonly ILogger _logger;
-        public ProductController(ILogger logger)
+        public ProductController(ILogger<ProductController> logger)
         {
             _logger = logger;
         }

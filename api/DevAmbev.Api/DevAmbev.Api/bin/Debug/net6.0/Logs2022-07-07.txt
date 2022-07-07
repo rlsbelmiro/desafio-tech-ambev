@@ -111,3 +111,18 @@ System.InvalidOperationException: Unable to resolve service for type 'Microsoft.
 2022-07-07 02:42:01,677 [1] INFO  App  
  Content root path: C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Api\ 
  
+2022-07-07 03:22:11,782 [1] INFO  App  
+ Now listening on: https://localhost:7004 
+ 
+2022-07-07 03:22:11,847 [1] INFO  App  
+ Now listening on: http://localhost:5004 
+ 
+2022-07-07 03:22:11,857 [1] INFO  App  
+ Application started. Press Ctrl+C to shut down. 
+ 
+2022-07-07 03:22:11,863 [1] INFO  App  
+ Hosting environment: Development 
+ 
+2022-07-07 03:22:11,894 [1] INFO  App  
+ Content root path: C:\Projetos\ambev\desafio-tech-ambev\api\DevAmbev.Api\DevAmbev.Api\ 
+ 

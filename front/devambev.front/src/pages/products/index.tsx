@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 import { api } from "../../services/apiClient";
 import { Input } from "../../components/ui/Input/index";
 import { Button } from "../../components/ui/Button/index";
-import { deleteProduct, getProduct, listProducts, ProductModel, saveProduct } from "../../services/ProductsService";
+import { deleteProduct, getProduct, listProducts, ProductModel, saveProduct } from "../../services/productsService";
 
 export default function Product() {
     const [idProduct, setIdProduct] = useState(0);

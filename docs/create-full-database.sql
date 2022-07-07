@@ -42,14 +42,12 @@ create table Orders
 	Id int not null primary key auto_increment,
 	Amount decimal(18,2) not null,
 	CustomerId int not null,
-	UserId int not null,
 	Active bit not null default(1),
 	CreatedAt datetime not null,
 	CreatedBy varchar(200),
 	UpdatedAt datetime null,
 	UpdatedBy varchar(200) null,
-	constraint FK_Customer foreign key(CustomerId) references Customers(Id),
-	constraint FK_User foreign key(UserId) references Users(Id)
+	constraint FK_Customer foreign key(CustomerId) references Customers(Id)
 );
 create table OrderItems
 (

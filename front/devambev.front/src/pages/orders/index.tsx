@@ -11,7 +11,7 @@ import { Input } from "../../components/ui/Input/index";
 import { Button } from "../../components/ui/Button/index";
 import { getOrder, listOrders, OrderItemModel, OrderModel, saveOrder } from "../../services/OrdersService";
 import { CustomerModel, listCustomers } from "../../services/CustomerService";
-import { listProducts, ProductModel } from "../../services/ProductsService";
+import { listProducts, ProductModel } from "../../services/productsService";
 
 export default function Order() {
     const [idOrder, setIdOrder] = useState(0);
